@@ -13,6 +13,7 @@
 		0EAEAD3E1BDED2D1005678BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EAEAD3C1BDED2D1005678BD /* Main.storyboard */; };
 		0EAEAD401BDED2D1005678BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EAEAD3F1BDED2D1005678BD /* Assets.xcassets */; };
 		0EAEAD431BDED2D1005678BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EAEAD411BDED2D1005678BD /* LaunchScreen.storyboard */; };
+		0EAEAD491BDEDFF5005678BD /* beep22.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0EAEAD481BDEDFF5005678BD /* beep22.mp3 */; };
 		0EB7B9371BD3E5E900C9132E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB7B9361BD3E5E900C9132E /* AppDelegate.swift */; };
 		0EB7B9391BD3E5E900C9132E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB7B9381BD3E5E900C9132E /* ViewController.swift */; };
 		0EB7B93C1BD3E5E900C9132E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EB7B93A1BD3E5E900C9132E /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 		0EAEAD3F1BDED2D1005678BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0EAEAD421BDED2D1005678BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0EAEAD441BDED2D1005678BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0EAEAD481BDEDFF5005678BD /* beep22.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = beep22.mp3; path = ../../../Downloads/beep22.mp3; sourceTree = "<group>"; };
 		0EB7B9331BD3E5E900C9132E /* LocationList2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationList2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EB7B9361BD3E5E900C9132E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EB7B9381BD3E5E900C9132E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 		0EAEAD351BDED2D1005678BD /* LocationList - detail */ = {
 			isa = PBXGroup;
 			children = (
+				0EAEAD481BDEDFF5005678BD /* beep22.mp3 */,
 				0EAEAD361BDED2D1005678BD /* AppDelegate.swift */,
 				0EAEAD381BDED2D1005678BD /* MasterViewController.swift */,
 				0EAEAD3A1BDED2D1005678BD /* DetailViewController.swift */,
@@ -182,6 +185,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EAEAD491BDEDFF5005678BD /* beep22.mp3 in Resources */,
 				0EAEAD431BDED2D1005678BD /* LaunchScreen.storyboard in Resources */,
 				0EAEAD401BDED2D1005678BD /* Assets.xcassets in Resources */,
 				0EAEAD3E1BDED2D1005678BD /* Main.storyboard in Resources */,

@@ -53,7 +53,7 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
             let mainBundle = NSBundle.mainBundle()
             
             /* Find the location of our file to feed to the audio player */
-            let filePath = mainBundle.pathForResource("MySong", ofType:"mp3")
+            let filePath = mainBundle.pathForResource("beep22", ofType:"mp3")
             
             if let path = filePath{
                 let fileData = NSData(contentsOfFile: path)
