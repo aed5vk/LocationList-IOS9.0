@@ -8,17 +8,23 @@
 
 import UIKit
 import MapKit
+import AVFoundation
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, AVAudioPlayerDelegate {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
-
+    var audioPlayer: AVAudioPlayer?
+    
     var detailItem: AnyObject? {
         didSet {
             // Update the view.
             self.configureView()
         }
+    }
+    
+    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+        print("Finished playing the song")
     }
     
     func configureView() {
@@ -38,6 +44,44 @@ class DetailViewController: UIViewController {
         
         self.configureView()
         self.navigationItem.title = self.detailItem?.description
+        
+        // play the music
+        let dispatchQueue =
+        dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+        
+        dispatch_async(dispatchQueue, {
+            let mainBundle = NSBundle.mainBundle()
+            
+            /* Find the location of our file to feed to the audio player */
+            let filePath = mainBundle.pathForResource("MySong", ofType:"mp3")
+            
+            if let path = filePath{
+                let fileData = NSData(contentsOfFile: path)
+                
+                do {
+                    /* Start the audio player */
+                    self.audioPlayer = try AVAudioPlayer(data: fileData!)
+                    
+                    guard let player = self.audioPlayer else{
+                        return
+                    }
+                    
+                    /* Set the delegate and start playing */
+                    player.delegate = self
+                    if player.prepareToPlay() && player.play(){
+                        /* Successfully started playing */
+                    } else {
+                        /* Failed to play */
+                    }
+                    
+                } catch{
+                    self.audioPlayer = nil
+                    return
+                }
+                
+            }
+            
+        })
     }
 
     override func didReceiveMemoryWarning() {
