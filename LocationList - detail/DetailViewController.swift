@@ -37,6 +37,7 @@ class DetailViewController: UIViewController {
         centerMapOnLocation(initialLocation)
         
         self.configureView()
+        self.navigationItem.title = self.detailItem?.description
     }
 
     override func didReceiveMemoryWarning() {
