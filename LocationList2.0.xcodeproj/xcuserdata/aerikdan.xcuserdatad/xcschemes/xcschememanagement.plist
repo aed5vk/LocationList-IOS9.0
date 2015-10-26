@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>LocationList - detail.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>LocationList2.0.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0EAEAD331BDED2D1005678BD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>0EB7B9321BD3E5E900C9132E</key>
 		<dict>
 			<key>primary</key>
