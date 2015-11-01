@@ -17,6 +17,19 @@ DerivedData
 *.ipa
 *.xcuserstate
 
+# OS generated files #
+######################
+*/.DS_Store
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+.DS_Store
+*.DS_Store
 # CocoaPods
 #
 # We recommend against adding the Pods directory to your .gitignore. However
