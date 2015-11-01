@@ -13,12 +13,13 @@
 		0EAEAD3E1BDED2D1005678BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EAEAD3C1BDED2D1005678BD /* Main.storyboard */; };
 		0EAEAD401BDED2D1005678BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EAEAD3F1BDED2D1005678BD /* Assets.xcassets */; };
 		0EAEAD431BDED2D1005678BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EAEAD411BDED2D1005678BD /* LaunchScreen.storyboard */; };
-		0EAEAD491BDEDFF5005678BD /* beep22.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0EAEAD481BDEDFF5005678BD /* beep22.mp3 */; };
 		0EB7B9371BD3E5E900C9132E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB7B9361BD3E5E900C9132E /* AppDelegate.swift */; };
 		0EB7B9391BD3E5E900C9132E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB7B9381BD3E5E900C9132E /* ViewController.swift */; };
 		0EB7B93C1BD3E5E900C9132E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EB7B93A1BD3E5E900C9132E /* Main.storyboard */; };
 		0EB7B93E1BD3E5E900C9132E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EB7B93D1BD3E5E900C9132E /* Assets.xcassets */; };
 		0EB7B9411BD3E5E900C9132E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EB7B93F1BD3E5E900C9132E /* LaunchScreen.storyboard */; };
+		8E2754DE1BE6AE6B00DF2D26 /* beep22.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8E2754DD1BE6AE6B00DF2D26 /* beep22.mp3 */; };
+		8E2754E21BE6C37500DF2D26 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2754E11BE6C37500DF2D26 /* TaskDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +31,6 @@
 		0EAEAD3F1BDED2D1005678BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0EAEAD421BDED2D1005678BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0EAEAD441BDED2D1005678BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0EAEAD481BDEDFF5005678BD /* beep22.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = beep22.mp3; path = ../../../Downloads/beep22.mp3; sourceTree = "<group>"; };
 		0EB7B9331BD3E5E900C9132E /* LocationList2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationList2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EB7B9361BD3E5E900C9132E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EB7B9381BD3E5E900C9132E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -38,6 +38,8 @@
 		0EB7B93D1BD3E5E900C9132E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0EB7B9401BD3E5E900C9132E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0EB7B9421BD3E5E900C9132E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E2754DD1BE6AE6B00DF2D26 /* beep22.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep22.mp3; sourceTree = "<group>"; };
+		8E2754E11BE6C37500DF2D26 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +63,7 @@
 		0EAEAD351BDED2D1005678BD /* LocationList - detail */ = {
 			isa = PBXGroup;
 			children = (
-				0EAEAD481BDEDFF5005678BD /* beep22.mp3 */,
+				8E2754DD1BE6AE6B00DF2D26 /* beep22.mp3 */,
 				0EAEAD361BDED2D1005678BD /* AppDelegate.swift */,
 				0EAEAD381BDED2D1005678BD /* MasterViewController.swift */,
 				0EAEAD3A1BDED2D1005678BD /* DetailViewController.swift */,
@@ -69,6 +71,7 @@
 				0EAEAD3F1BDED2D1005678BD /* Assets.xcassets */,
 				0EAEAD411BDED2D1005678BD /* LaunchScreen.storyboard */,
 				0EAEAD441BDED2D1005678BD /* Info.plist */,
+				8E2754E11BE6C37500DF2D26 /* TaskDetailViewController.swift */,
 			);
 			path = "LocationList - detail";
 			sourceTree = "<group>";
@@ -153,11 +156,11 @@
 				TargetAttributes = {
 					0EAEAD331BDED2D1005678BD = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 75NB7CUYEC;
+						DevelopmentTeam = Y75RKX2MT8;
 					};
 					0EB7B9321BD3E5E900C9132E = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = 75NB7CUYEC;
+						DevelopmentTeam = Y75RKX2MT8;
 					};
 				};
 			};
@@ -185,10 +188,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0EAEAD491BDEDFF5005678BD /* beep22.mp3 in Resources */,
 				0EAEAD431BDED2D1005678BD /* LaunchScreen.storyboard in Resources */,
 				0EAEAD401BDED2D1005678BD /* Assets.xcassets in Resources */,
 				0EAEAD3E1BDED2D1005678BD /* Main.storyboard in Resources */,
+				8E2754DE1BE6AE6B00DF2D26 /* beep22.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +214,7 @@
 			files = (
 				0EAEAD3B1BDED2D1005678BD /* DetailViewController.swift in Sources */,
 				0EAEAD391BDED2D1005678BD /* MasterViewController.swift in Sources */,
+				8E2754E21BE6C37500DF2D26 /* TaskDetailViewController.swift in Sources */,
 				0EAEAD371BDED2D1005678BD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,11 +270,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "LocationList - detail/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cs.virginia.edu.4720.LocationList---detail";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -278,11 +285,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "LocationList - detail/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cs.virginia.edu.4720.LocationList---detail";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -374,11 +384,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = LocationList2.0/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "cs.virginia.edu.4720.LocationList2-0";
+				PRODUCT_BUNDLE_IDENTIFIER = "cs.virginia.edu.4720.LocationList2-0Gene";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -387,11 +399,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = LocationList2.0/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "cs.virginia.edu.4720.LocationList2-0";
+				PRODUCT_BUNDLE_IDENTIFIER = "cs.virginia.edu.4720.LocationList2-0Gene";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -405,6 +419,7 @@
 				0EAEAD461BDED2D1005678BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0EB7B92E1BD3E5E900C9132E /* Build configuration list for PBXProject "LocationList2.0" */ = {
 			isa = XCConfigurationList;

@@ -12,7 +12,11 @@ import AVFoundation
 
 class DetailViewController: UIViewController, AVAudioPlayerDelegate {
 
+    
+    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var detailDescriptionLabel: UILabel!
+    
+    var location: CLLocation?
 
     var audioPlayer: AVAudioPlayer?
     
@@ -39,9 +43,9 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let initialLocation = CLLocation(latitude: 38.035657, longitude: -78.503321)
-        centerMapOnLocation(initialLocation)
-        
+        if let initialLocation = location {
+            centerMapOnLocation(initialLocation)
+        }
         self.configureView()
         self.navigationItem.title = self.detailItem?.description
         
@@ -89,13 +93,19 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBOutlet weak var mapWidget: MKMapView!
+    
     let regionRadius: CLLocationDistance = 1000
     func centerMapOnLocation(location: CLLocation){
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius*2.0)
-        mapWidget.setRegion(coordinateRegion, animated: true)
+        mapView.setRegion(coordinateRegion, animated: true)
     }
 
+    //Mark: Segue stuff
+    @IBAction func cancelToDetailViewController(segue:UIStoryboardSegue) {
+    }
+    
+    @IBAction func saveTaskDetail(segue:UIStoryboardSegue) {
+    }
 
 }
 
