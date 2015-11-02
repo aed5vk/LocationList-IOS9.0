@@ -18,8 +18,7 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
     var objects = [NSManagedObject]()
     
     //Mark: Properties
-    @IBOutlet weak var lat: UILabel!
-    @IBOutlet weak var lon: UILabel!
+    
     var latitude: CLLocationDegrees?
     var longitude: CLLocationDegrees?
     var objectLocation: CLLocation?
@@ -39,8 +38,7 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
         longitude = newLocation.coordinate.longitude
         print("Latitude = \(latitude)")
         print("Longitude = \(longitude)")
-        lat.text = String(newLocation.coordinate.latitude)
-        lon.text = String(newLocation.coordinate.longitude)
+        
         
         
     }
