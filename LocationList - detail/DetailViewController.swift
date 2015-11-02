@@ -35,8 +35,9 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
     func configureView() {
         // Update the user interface for the detail item.
         if let detail = self.detailItem {
-            let label = self.detailDescriptionLabel
-            label.text = detail.valueForKey("title") as? String
+            if let label = self.detailDescriptionLabel {
+                label.text = detail.valueForKey("title") as? String
+            }
         }
     }
 
@@ -47,7 +48,8 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
             centerMapOnLocation(initialLocation)
         }
         self.configureView()
-        self.navigationItem.title = self.detailItem?.description
+        let object = self.detailItem
+        self.navigationItem.title = object!.valueForKey("title") as? String
         
         // play the music
         let dispatchQueue =
