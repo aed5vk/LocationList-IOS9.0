@@ -20,6 +20,7 @@
 		0EB7B9411BD3E5E900C9132E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EB7B93F1BD3E5E900C9132E /* LaunchScreen.storyboard */; };
 		8E2754DE1BE6AE6B00DF2D26 /* beep22.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8E2754DD1BE6AE6B00DF2D26 /* beep22.mp3 */; };
 		8E2754E21BE6C37500DF2D26 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2754E11BE6C37500DF2D26 /* TaskDetailViewController.swift */; };
+		8E2754E51BE6DB5B00DF2D26 /* LocationList2.0.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8E2754E31BE6DB5B00DF2D26 /* LocationList2.0.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		0EB7B9421BD3E5E900C9132E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E2754DD1BE6AE6B00DF2D26 /* beep22.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep22.mp3; sourceTree = "<group>"; };
 		8E2754E11BE6C37500DF2D26 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
+		8E2754E41BE6DB5B00DF2D26 /* LocationList2.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocationList2.0.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				0EAEAD411BDED2D1005678BD /* LaunchScreen.storyboard */,
 				0EAEAD441BDED2D1005678BD /* Info.plist */,
 				8E2754E11BE6C37500DF2D26 /* TaskDetailViewController.swift */,
+				8E2754E31BE6DB5B00DF2D26 /* LocationList2.0.xcdatamodeld */,
 			);
 			path = "LocationList - detail";
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				0EAEAD391BDED2D1005678BD /* MasterViewController.swift in Sources */,
 				8E2754E21BE6C37500DF2D26 /* TaskDetailViewController.swift in Sources */,
 				0EAEAD371BDED2D1005678BD /* AppDelegate.swift in Sources */,
+				8E2754E51BE6DB5B00DF2D26 /* LocationList2.0.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +444,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8E2754E31BE6DB5B00DF2D26 /* LocationList2.0.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8E2754E41BE6DB5B00DF2D26 /* LocationList2.0.xcdatamodel */,
+			);
+			currentVersion = 8E2754E41BE6DB5B00DF2D26 /* LocationList2.0.xcdatamodel */;
+			path = LocationList2.0.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0EB7B92B1BD3E5E900C9132E /* Project object */;
 }

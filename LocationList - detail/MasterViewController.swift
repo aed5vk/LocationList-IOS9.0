@@ -8,13 +8,14 @@
 
 import UIKit
 import CoreLocation
+import CoreData
 
 class MasterViewController: UITableViewController, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager?
 
     var detailViewController: DetailViewController? = nil
-    var objects = [AnyObject]()
+    var objects = [NSManagedObject]()
     
     //Mark: Properties
     @IBOutlet weak var lat: UILabel!
@@ -173,7 +174,28 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
             let textField = alert.textFields![0] as UITextField
             self.enteredText = textField.text!
             print("Text field: \(textField.text)")
-            self.objects.insert(self.enteredText, atIndex: 0)
+            let appDelegate =
+            UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            let managedContext = appDelegate.managedObjectContext
+            
+            //2
+            let entity =  NSEntityDescription.entityForName("Todo",
+                inManagedObjectContext:managedContext)
+            let object = NSManagedObject(entity: entity!,
+                insertIntoManagedObjectContext: managedContext)
+            
+            //3
+            object.setValue(self.enteredText, forKey: "title")
+            //4
+            do {
+                try managedContext.save()
+                //5
+                self.objects.insert(object, atIndex: 0)
+            } catch let error as NSError  {
+                print("Could not save \(error), \(error.userInfo)")
+            }
+            
             let indexPath = NSIndexPath(forRow: 0, inSection: 0)
             self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }))
@@ -198,7 +220,7 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
         }
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! NSString
+                let object = objects[indexPath.row]
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
                 let location = objectLocation
                 controller.detailItem = object
@@ -222,8 +244,9 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
-        let object = objects[indexPath.row] as! NSString
-        cell.textLabel!.text = object.description
+        let object = objects[indexPath.row]
+        
+        cell.textLabel!.text = object.valueForKey("title") as? String
         return cell
     }
 

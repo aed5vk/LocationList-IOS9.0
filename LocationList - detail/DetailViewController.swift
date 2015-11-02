@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import AVFoundation
+import CoreData
 
 class DetailViewController: UIViewController, AVAudioPlayerDelegate {
 
@@ -20,7 +21,7 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
 
     var audioPlayer: AVAudioPlayer?
     
-    var detailItem: AnyObject? {
+    var detailItem: NSManagedObject? {
         didSet {
             // Update the view.
             self.configureView()
@@ -34,9 +35,8 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
     func configureView() {
         // Update the user interface for the detail item.
         if let detail = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.description
-            }
+            let label = self.detailDescriptionLabel
+            label.text = detail.valueForKey("title") as? String
         }
     }
 
