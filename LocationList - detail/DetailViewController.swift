@@ -18,6 +18,7 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     
     var location: CLLocation?
+    var taskLocation: CLLocation?
 
     var audioPlayer: AVAudioPlayer?
     
@@ -46,6 +47,7 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         if let initialLocation = location {
             centerMapOnLocation(initialLocation)
+            taskLocation = initialLocation
         }
         self.configureView()
         let object = self.detailItem
@@ -107,6 +109,26 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     @IBAction func saveTaskDetail(segue:UIStoryboardSegue) {
+    }
+    
+    override func motionEnded(motion: UIEventSubtype,
+        withEvent event: UIEvent?) {
+            
+            if motion == .MotionShake{
+                let controller = UIAlertController(title: "Shake",
+                    message: "The map has been recentered",
+                    preferredStyle: .Alert)
+                
+                self.centerMapOnLocation(location!)
+                
+               controller.addAction(UIAlertAction(title: "OK",
+                    style: .Default,
+                    handler: nil))
+                
+                presentViewController(controller, animated: true, completion: nil)
+                
+            }
+            
     }
 
 }

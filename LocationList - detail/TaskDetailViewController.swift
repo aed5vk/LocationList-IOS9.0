@@ -9,7 +9,12 @@
 import UIKit
 
 class TaskDetailViewController: UITableViewController {
-
+  
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var radius: UITextField!
+    @IBOutlet weak var message: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,6 +24,29 @@ class TaskDetailViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    @IBAction func textFieldEditingChanged(sender: UITextField) {
+        addButton.enabled = !radius.text.isEmpty && !message.text.isEmpty
+    }
+    
+    @IBAction func onCancel(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction private func onAdd(sender: AnyObject) {
+        var coordinate = mapView.centerCoordinate
+        var radius = (radius.text as NSString).doubleValue
+        var identifier = NSUUID().UUIDString
+        var note = message.text
+        var eventType = (eventTypeSegmentedControl.selectedSegmentIndex == 0) ? EventType.OnEntry : EventType.OnExit
+        delegate!.addGeotificationViewController(self, didAddCoordinate: coordinate, radius: radius, identifier: identifier, note: note, eventType: eventType)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
