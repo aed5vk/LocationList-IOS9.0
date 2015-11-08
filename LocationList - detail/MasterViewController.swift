@@ -200,7 +200,13 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
                 insertIntoManagedObjectContext: managedContext)
             
             //3
+            let lati = self.latitude
+            let longi = self.longitude
             object.setValue(self.enteredText, forKey: "title")
+            object.setValue(0, forKey:"radius")
+            object.setValue("", forKey:"note")
+            object.setValue(lati, forKey:"latitude")
+            object.setValue(longi, forKey:"longitude")
             //4
             do {
                 try managedContext.save()
