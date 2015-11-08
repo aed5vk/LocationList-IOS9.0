@@ -14,6 +14,8 @@ import CoreData
 class DetailViewController: UIViewController, AVAudioPlayerDelegate {
 
     
+    @IBOutlet weak var radius: UITextField!
+    @IBOutlet weak var note: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     
