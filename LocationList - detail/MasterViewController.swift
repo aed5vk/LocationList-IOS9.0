@@ -207,16 +207,17 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
             object.setValue("", forKey:"note")
             object.setValue(lati, forKey:"latitude")
             object.setValue(longi, forKey:"longitude")
+            let size = self.objects.count
             //4
             do {
                 try managedContext.save()
                 //5
-                self.objects.insert(object, atIndex: 0)
+                self.objects.insert(object, atIndex: size)
             } catch let error as NSError  {
                 print("Could not save \(error), \(error.userInfo)")
             }
             
-            let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+            let indexPath = NSIndexPath(forRow: size, inSection: 0)
             self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }))
         
@@ -231,20 +232,18 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let lati = latitude {
-            if let longi = longitude {
-                objectLocation = CLLocation(latitude: lati, longitude: longi)
-            }
-        } else {
-            objectLocation = CLLocation(latitude: 38.035657, longitude: -78.503321)
-        }
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let object = objects[indexPath.row]
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
-                let location = objectLocation
+//                let obj_lati = object.valueForKey("latitude") as! Double
+//                let obj_longi = object.valueForKey("longitude") as! Double
+//                let lati = CLLocationDegrees(obj_lati)
+//                let longi = CLLocationDegrees(obj_longi)
+//                objectLocation = CLLocation(latitude: lati, longitude: longi)
+//                let location = objectLocation
                 controller.detailItem = object
-                controller.location = location
+//                controller.location = location
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -277,6 +276,10 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let managedContext = appDelegate.managedObjectContext
+            
+            managedContext.deleteObject(objects[indexPath.row] as NSManagedObject)
             objects.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {

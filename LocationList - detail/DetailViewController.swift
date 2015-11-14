@@ -47,6 +47,9 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let location_lat = detailItem?.valueForKey("latitude") as? CLLocationDegrees
+        let location_lon = detailItem?.valueForKey("longitude") as? CLLocationDegrees
+        location = CLLocation(latitude: location_lat!, longitude: location_lon!)
         if let initialLocation = location {
             centerMapOnLocation(initialLocation)
             taskLocation = initialLocation
