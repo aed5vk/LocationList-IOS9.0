@@ -14,13 +14,11 @@ import CoreData
 class DetailViewController: UIViewController, AVAudioPlayerDelegate {
 
     
-    @IBOutlet weak var radius: UITextField!
-    @IBOutlet weak var note: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     
     var location: CLLocation?
-    var taskLocation: CLLocation?
+    var personLocation: CLLocation?
 
     var audioPlayer: AVAudioPlayer?
     
@@ -30,6 +28,7 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
             self.configureView()
         }
     }
+    
     
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
         print("Finished playing the song")
@@ -43,6 +42,27 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
             }
         }
     }
+    
+    
+    func addPinToMapView(){
+        let location_lat = detailItem?.valueForKey("latitude") as? CLLocationDegrees
+        let location_lon = detailItem?.valueForKey("longitude") as? CLLocationDegrees
+        
+        /* This is just a sample location */
+        let location = CLLocationCoordinate2D(latitude: location_lat!,
+            longitude: location_lon!)
+        
+        let distance = self.location!.distanceFromLocation(personLocation!)
+        /* Create the annotation using the location */
+        
+        let annotation = MyAnnotation(coordinate: location,
+            title: (detailItem!.valueForKey("title") as? String)!,
+            subtitle: String(distance) + " meters")
+        
+        /* And eventually add it to the map */
+        mapView.addAnnotation(annotation)
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,9 +72,9 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
         location = CLLocation(latitude: location_lat!, longitude: location_lon!)
         if let initialLocation = location {
             centerMapOnLocation(initialLocation)
-            taskLocation = initialLocation
         }
         self.configureView()
+        addPinToMapView()
         let object = self.detailItem
         self.navigationItem.title = object!.valueForKey("title") as? String
         
@@ -95,6 +115,7 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
             }
             
         })
+        mapView.showsUserLocation = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -108,7 +129,8 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius*2.0)
         mapView.setRegion(coordinateRegion, animated: true)
     }
-
+    
+    
     //Mark: Segue stuff
     @IBAction func cancelToDetailViewController(segue:UIStoryboardSegue) {
     }
@@ -124,7 +146,7 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
                     message: "The map has been recentered",
                     preferredStyle: .Alert)
                 
-                self.centerMapOnLocation(location!)
+                self.centerMapOnLocation(personLocation!)
                 
                controller.addAction(UIAlertAction(title: "OK",
                     style: .Default,

@@ -34,6 +34,7 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
         
         let newLocation = locations[0]
         
+        objectLocation = newLocation
         latitude = newLocation.coordinate.latitude
         longitude = newLocation.coordinate.longitude
         print("Latitude = \(latitude)")
@@ -228,6 +229,43 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
     
         
     }
+    
+    
+    // MARK: Geo
+    func regionWithGeotification(geotification: NSManagedObject) -> CLCircularRegion {
+        
+        let geo_lat = geotification.valueForKey("latitude") as! Double
+        let geo_lon = geotification.valueForKey("longitude") as! Double
+        let coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(geo_lat), CLLocationDegrees(geo_lon))
+        // 1
+        let region = CLCircularRegion(center: coordinate, radius: geotification.valueForKey("radius") as! Double, identifier: geotification.valueForKey("title") as! String)
+        // 2
+        region.notifyOnEntry = true
+        return region
+    }
+    
+//    
+//    func startMonitoringGeotification(geotification: NSManagedObject) {
+//        // 1
+//        if !CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) {
+//            
+//            var alert = UIAlertController(title: "Error", message: "LocationList is not supported on this device!", preferredStyle: UIAlertControllerStyle.Alert)
+//            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+//            self.presentViewController(alert, animated: true, completion: nil)
+//            
+//        }
+//        // 2
+//        if CLLocationManager.authorizationStatus() != .AuthorizedAlways {
+//            
+//            var alert = UIAlertController(title: "Error", message: "Location services are required!", preferredStyle: UIAlertControllerStyle.Alert)
+//            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+//            self.presentViewController(alert, animated: true, completion: nil)        }
+//        
+//        // 3
+//        let region = regionWithGeotification(geotification)
+//        // 4
+//        locationManager.startMonitoringForRegion(region)
+//    }
 
     // MARK: - Segues
 
@@ -243,6 +281,7 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
 //                objectLocation = CLLocation(latitude: lati, longitude: longi)
 //                let location = objectLocation
                 controller.detailItem = object
+                controller.personLocation = objectLocation
 //                controller.location = location
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
