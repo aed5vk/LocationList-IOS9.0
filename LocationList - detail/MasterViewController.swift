@@ -57,8 +57,10 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
             switch CLLocationManager.authorizationStatus(){
             case .AuthorizedAlways:
                 print("Authorized")
+                manager.startUpdatingLocation()
             case .AuthorizedWhenInUse:
                 print("Authorized when in use")
+                manager.startUpdatingLocation()
             case .Denied:
                 print("Denied")
             case .NotDetermined:
