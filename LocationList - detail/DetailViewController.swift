@@ -78,43 +78,6 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
         let object = self.detailItem
         self.navigationItem.title = object!.valueForKey("title") as? String
         
-        // play the music
-        let dispatchQueue =
-        dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-        
-        dispatch_async(dispatchQueue, {
-            let mainBundle = NSBundle.mainBundle()
-            
-            /* Find the location of our file to feed to the audio player */
-            let filePath = mainBundle.pathForResource("beep22", ofType:"mp3")
-            
-            if let path = filePath{
-                let fileData = NSData(contentsOfFile: path)
-                
-                do {
-                    /* Start the audio player */
-                    self.audioPlayer = try AVAudioPlayer(data: fileData!)
-                    
-                    guard let player = self.audioPlayer else{
-                        return
-                    }
-                    
-                    /* Set the delegate and start playing */
-                    player.delegate = self
-                    if player.prepareToPlay() && player.play(){
-                        /* Successfully started playing */
-                    } else {
-                        /* Failed to play */
-                    }
-                    
-                } catch{
-                    self.audioPlayer = nil
-                    return
-                }
-                
-            }
-            
-        })
         mapView.showsUserLocation = true
     }
 
@@ -142,6 +105,46 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
         withEvent event: UIEvent?) {
             
             if motion == .MotionShake{
+                
+                // play the music
+                let dispatchQueue =
+                dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+                
+                dispatch_async(dispatchQueue, {
+                    let mainBundle = NSBundle.mainBundle()
+                    
+                    /* Find the location of our file to feed to the audio player */
+                    let filePath = mainBundle.pathForResource("beep22", ofType:"mp3")
+                    
+                    if let path = filePath{
+                        let fileData = NSData(contentsOfFile: path)
+                        
+                        do {
+                            /* Start the audio player */
+                            self.audioPlayer = try AVAudioPlayer(data: fileData!)
+                            
+                            guard let player = self.audioPlayer else{
+                                return
+                            }
+                            
+                            /* Set the delegate and start playing */
+                            player.delegate = self
+                            if player.prepareToPlay() && player.play(){
+                                /* Successfully started playing */
+                            } else {
+                                /* Failed to play */
+                            }
+                            
+                        } catch{
+                            self.audioPlayer = nil
+                            return
+                        }
+                        
+                    }
+                    
+                })
+                
+                
                 let controller = UIAlertController(title: "Shake",
                     message: "The map has been recentered",
                     preferredStyle: .Alert)

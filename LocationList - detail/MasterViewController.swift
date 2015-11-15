@@ -180,7 +180,7 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
     var enteredText = "Your ToDO"
     func insertNewObject(sender: AnyObject) {
         
-        var alert = UIAlertController(title: "Some Title", message: "Enter a text", preferredStyle: .Alert)
+        var alert = UIAlertController(title: "Enter Task Title", message: "Enter the title of your task", preferredStyle: .Alert)
   
         alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
             
