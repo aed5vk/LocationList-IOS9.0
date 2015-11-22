@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E802FEC1C0257E40031DA28 /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E802FEB1C0257E40031DA28 /* mapViewController.swift */; };
 		0EAEAD371BDED2D1005678BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEAD361BDED2D1005678BD /* AppDelegate.swift */; };
 		0EAEAD391BDED2D1005678BD /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEAD381BDED2D1005678BD /* MasterViewController.swift */; };
 		0EAEAD3B1BDED2D1005678BD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEAD3A1BDED2D1005678BD /* DetailViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E802FEB1C0257E40031DA28 /* mapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
 		0EAEAD341BDED2D1005678BD /* LocationList - detail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LocationList - detail.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EAEAD361BDED2D1005678BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EAEAD381BDED2D1005678BD /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				8E2754E11BE6C37500DF2D26 /* TaskDetailViewController.swift */,
 				8E2754E31BE6DB5B00DF2D26 /* LocationList2.0.xcdatamodeld */,
 				8E4303451BF9252900DC02E9 /* MyAnnotation.swift */,
+				0E802FEB1C0257E40031DA28 /* mapViewController.swift */,
 			);
 			path = "LocationList - detail";
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				0EAEAD391BDED2D1005678BD /* MasterViewController.swift in Sources */,
 				8E4303461BF9252900DC02E9 /* MyAnnotation.swift in Sources */,
 				8E2754E21BE6C37500DF2D26 /* TaskDetailViewController.swift in Sources */,
+				0E802FEC1C0257E40031DA28 /* mapViewController.swift in Sources */,
 				0EAEAD371BDED2D1005678BD /* AppDelegate.swift in Sources */,
 				8E2754E51BE6DB5B00DF2D26 /* LocationList2.0.xcdatamodeld in Sources */,
 			);

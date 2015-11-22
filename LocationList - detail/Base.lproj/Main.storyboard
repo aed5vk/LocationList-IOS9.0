@@ -234,11 +234,50 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8"/>
+                    <navigationItem key="navigationItem" id="Zdf-7t-Un8">
+                        <nil key="title"/>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="97G-EF-lVP">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <segue destination="KV3-0P-Tkr" kind="show" id="mlZ-HL-cEa"/>
+                            </connections>
+                        </button>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="709" y="-630"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="jaH-bs-qZ3">
+            <objects>
+                <viewController id="KV3-0P-Tkr" customClass="mapViewController" customModule="LocationList___detail" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FlB-uh-839"/>
+                        <viewControllerLayoutGuide type="bottom" id="Vvk-PI-oty"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AqX-N5-fA8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mBN-hF-gme">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mBN-hF-gme" firstAttribute="bottom" secondItem="Vvk-PI-oty" secondAttribute="top" id="CGp-dN-feK"/>
+                            <constraint firstItem="mBN-hF-gme" firstAttribute="leading" secondItem="AqX-N5-fA8" secondAttribute="leading" id="JEw-HN-6nr"/>
+                            <constraint firstAttribute="trailing" secondItem="mBN-hF-gme" secondAttribute="trailing" id="g4q-7R-v8I"/>
+                            <constraint firstItem="mBN-hF-gme" firstAttribute="top" secondItem="FlB-uh-839" secondAttribute="bottom" id="tPh-qr-ZE6"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wwm-hB-95L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1444" y="-615"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">
