@@ -289,7 +289,19 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
         }
+        
+        if segue.identifier == "goToMapView" {
+            let controller = (segue.destinationViewController as! mapViewController)
+            
+            controller.location = objectLocation
+            controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+            controller.navigationItem.leftItemsSupplementBackButton = true
+            
+        }
     }
+    
+    
+
 
     // MARK: - Table View
 

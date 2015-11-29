@@ -239,9 +239,9 @@
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="97G-EF-lVP">
                             <rect key="frame" x="180" y="7" width="240" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Button"/>
+                            <state key="normal" title="Your Friends Tasks Map"/>
                             <connections>
-                                <segue destination="KV3-0P-Tkr" kind="show" id="mlZ-HL-cEa"/>
+                                <segue destination="KV3-0P-Tkr" kind="show" identifier="goToMapView" id="mlZ-HL-cEa"/>
                             </connections>
                         </button>
                     </navigationItem>
@@ -274,6 +274,9 @@
                             <constraint firstItem="mBN-hF-gme" firstAttribute="top" secondItem="FlB-uh-839" secondAttribute="bottom" id="tPh-qr-ZE6"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="mBN-hF-gme" id="K2b-cd-z4e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wwm-hB-95L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
