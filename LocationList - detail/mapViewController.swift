@@ -24,9 +24,6 @@ class mapViewController: UIViewController, AVAudioPlayerDelegate {
         get()
         mapView.showsUserLocation = true
         self.centerMapOnLocation(location!)
-       
-
-        
         
     }
     
