@@ -176,8 +176,8 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
         }
         let postsUrlRequest = NSMutableURLRequest(URL: postsURL)
         postsUrlRequest.HTTPMethod = "POST"
-        
-        let newPost: NSDictionary = ["title": "Frist Psot", "subtitle": "I iz fisrt", "latitude": location_lat2!, "longitude": location_lon2!]
+        postsUrlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let newPost: NSDictionary = ["title": "Frist Post", "subtitle": "I iz fisrt", "latitude": location_lat2!, "longitude": location_lon2!]
         do {
             let jsonPost = try NSJSONSerialization.dataWithJSONObject(newPost, options: [])
             postsUrlRequest.HTTPBody = jsonPost
@@ -222,15 +222,9 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
         }catch {
             print("Error: cannot create JSON from post")
         }
-        
+    }
+    
     }
 
-    
-    
-    postButton.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
-    func pressed(sender: UIButton!) {
-        post()
-    }
 
-}
 
