@@ -349,54 +349,6 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
     }
 
     //MARK: Web Services Stuff
-    func get(index: Int){
-        
-        let postEndpoint: String = "https://stark-ocean-4729.herokuapp.com/annotations/"
-        guard let url = NSURL(string: postEndpoint) else {
-            print("Error: cannot create URL")
-            return
-        }
-        let urlRequest = NSURLRequest(URL: url)
-        
-        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: config)
-        
-        let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data, response, error) in
-            guard let responseData = data else {
-                print("Error: did not receive data")
-                return
-            }
-            guard error == nil else {
-                print("error calling GET on /posts/1")
-                print(error)
-                return
-            }
-            // parse the result as JSON, since that's what the API provides
-            let itemList: NSArray
-            do {
-                itemList = try NSJSONSerialization.JSONObjectWithData(responseData,
-                    options: []) as! NSArray
-            } catch  {
-                print("error trying to convert data to JSON")
-                return
-            }
-            
-            
-            for anno in itemList{
-                
-                let post = anno
-                
-                // the post object is a dictionary
-                // so we just access the title using the "title" key
-                // so check for a title and print it if we have one
-                let postUrl = post["url"] as? String
-                
-            }
-            
-            
-        })
-        task.resume()
-    }
     
     func search(desiredTitle: String){
         get()
