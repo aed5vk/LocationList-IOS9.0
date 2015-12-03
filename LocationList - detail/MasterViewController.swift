@@ -337,7 +337,7 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
             
             let object = objects[indexPath.row]
             let temp = object.valueForKey("title") as! String
-            search(temp)
+            get(temp)
             
             managedContext.deleteObject(objects[indexPath.row] as NSManagedObject)
             objects.removeAtIndex(indexPath.row)
@@ -350,9 +350,8 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
 
     //MARK: Web Services Stuff
     
-    func search(desiredTitle: String){
-        get()
-        for obj in self.list!{
+    func search(desiredTitle: String, list: NSArray){
+        for obj in list{
             let t = obj.valueForKey("title") as! String
             if(t == desiredTitle){
                 let url = obj.valueForKey("url") as! String
@@ -379,7 +378,7 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
         task.resume()
     }
     
-    func get(){
+    func get(desiredTitle: String){
         let postEndpoint: String = "https://stark-ocean-4729.herokuapp.com/annotations/"
         let url = NSURL(string: postEndpoint)
         let urlRequest = NSURLRequest(URL: url!)
@@ -398,9 +397,7 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
                 print("error trying to convert data to JSON")
                 return
             }
-            for item in itemList{
-                self.list!.addObject(item)
-            }
+            self.search(desiredTitle, list: itemList)
             
         })
         task.resume()
