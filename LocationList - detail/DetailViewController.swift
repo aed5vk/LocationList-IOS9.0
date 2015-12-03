@@ -15,6 +15,15 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
 
     @IBAction func postFunc(sender: AnyObject) {
         post()
+        let controller = UIAlertController(title: "Task Uploaded",
+            message: "Your Task has been uploaded to the web service",
+            preferredStyle: .Alert)
+        
+        controller.addAction(UIAlertAction(title: "OK",
+            style: .Default,
+            handler: nil))
+        
+        presentViewController(controller, animated: true, completion: nil)
     }
    
     
