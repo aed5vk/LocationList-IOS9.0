@@ -22,6 +22,7 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
     var latitude: CLLocationDegrees?
     var longitude: CLLocationDegrees?
     var objectLocation: CLLocation?
+    var list: NSMutableArray?
 
 
     //Mark: LocationManager
@@ -142,6 +143,8 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.07, green:0.32, blue:0.64, alpha:0.5)
+        self.navigationController?.navigationBar.tintColor = UIColor.orangeColor()
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
         self.navigationItem.rightBarButtonItem = addButton
@@ -332,8 +335,13 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             let managedContext = appDelegate.managedObjectContext
             
+            let object = objects[indexPath.row]
+            let temp = object.valueForKey("title") as! String
+            search(temp)
+            
             managedContext.deleteObject(objects[indexPath.row] as NSManagedObject)
             objects.removeAtIndex(indexPath.row)
+    
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -341,15 +349,15 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
     }
 
     //MARK: Web Services Stuff
-    func get(){
-    
-        let postEndpoint: String = "http://jsonplaceholder.typicode.com/posts/1"
+    func get(index: Int){
+        
+        let postEndpoint: String = "https://stark-ocean-4729.herokuapp.com/annotations/"
         guard let url = NSURL(string: postEndpoint) else {
             print("Error: cannot create URL")
             return
-            }
+        }
         let urlRequest = NSURLRequest(URL: url)
-    
+        
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
         let session = NSURLSession(configuration: config)
         
@@ -364,84 +372,88 @@ class MasterViewController: UITableViewController, CLLocationManagerDelegate {
                 return
             }
             // parse the result as JSON, since that's what the API provides
-            let post: NSDictionary
+            let itemList: NSArray
             do {
-                post = try NSJSONSerialization.JSONObjectWithData(responseData,
-                    options: []) as! NSDictionary
+                itemList = try NSJSONSerialization.JSONObjectWithData(responseData,
+                    options: []) as! NSArray
             } catch  {
                 print("error trying to convert data to JSON")
                 return
             }
-            // now we have the post, let's just print it to prove we can access it
-            print("The post is: " + post.description)
             
-            // the post object is a dictionary
-            // so we just access the title using the "title" key
-            // so check for a title and print it if we have one
-            if let postTitle = post["title"] as? String {
-                print("The title is: " + postTitle)
+            
+            for anno in itemList{
+                
+                let post = anno
+                
+                // the post object is a dictionary
+                // so we just access the title using the "title" key
+                // so check for a title and print it if we have one
+                let postUrl = post["url"] as? String
+                
+            }
+            
+            
+        })
+        task.resume()
+    }
+    
+    func search(desiredTitle: String){
+        get()
+        for obj in self.list!{
+            let t = obj.valueForKey("title") as! String
+            if(t == desiredTitle){
+                let url = obj.valueForKey("url") as! String
+                deleteURL(url)
+            }
+        }
+    }
+    
+    func deleteURL(url: String){
+        let firstPostEndpoint: String = url
+        let firstPostUrlRequest = NSMutableURLRequest(URL: NSURL(string: firstPostEndpoint)!)
+        firstPostUrlRequest.HTTPMethod = "DELETE"
+        
+        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: config)
+        
+        let task = session.dataTaskWithRequest(firstPostUrlRequest, completionHandler: {
+            (data, response, error) in
+            guard let _ = data else {
+                print("error calling DELETE on /posts/1")
+                return
             }
         })
         task.resume()
     }
     
-    func post(){
+    func get(){
+        let postEndpoint: String = "https://stark-ocean-4729.herokuapp.com/annotations/"
+        let url = NSURL(string: postEndpoint)
+        let urlRequest = NSURLRequest(URL: url!)
         
-        let postsEndpoint: String = "http://jsonplaceholder.typicode.com/posts"
-        guard let postsURL = NSURL(string: postsEndpoint) else {
-            print("Error: cannot create URL")
-            return
-        }
-        let postsUrlRequest = NSMutableURLRequest(URL: postsURL)
-        postsUrlRequest.HTTPMethod = "POST"
+        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: config)
         
-        let newPost: NSDictionary = ["title": "Frist Psot", "body": "I iz fisrt", "userId": 1]
-        do {
-            let jsonPost = try NSJSONSerialization.dataWithJSONObject(newPost, options: [])
-            postsUrlRequest.HTTPBody = jsonPost
+        let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data, response, error) in
+        let responseData = data
+        // parse the result as JSON, since that's what the API provides
+            let itemList: NSArray
+            do {
+                itemList = try NSJSONSerialization.JSONObjectWithData(responseData!,
+                    options: []) as! NSArray
+            } catch  {
+                print("error trying to convert data to JSON")
+                return
+            }
+            for item in itemList{
+                self.list!.addObject(item)
+            }
             
-            let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-            let session = NSURLSession(configuration: config)
-            
-            let task = session.dataTaskWithRequest(postsUrlRequest, completionHandler: {
-                (data, response, error) in
-                guard let responseData = data else {
-                    print("Error: did not receive data")
-                    return
-                }
-                guard error == nil else {
-                    print("error calling GET on /posts/1")
-                    print(error)
-                    return
-                }
-                
-                // parse the result as JSON, since that's what the API provides
-                let post: NSDictionary
-                do {
-                    post = try NSJSONSerialization.JSONObjectWithData(responseData,
-                        options: []) as! NSDictionary
-                } catch  {
-                    print("error parsing response from POST on /posts")
-                    return
-                }
-                // now we have the post, let's just print it to prove we can access it
-                print("The post is: " + post.description)
-                
-                // the post object is a dictionary
-                // so we just access the title using the "title" key
-                // so check for a title and print it if we have one
-                if let postID = post["id"] as? Int
-                {
-                    print("The ID is: \(postID)")
-                }
-            })
-            
-            task.resume()
-        }catch {
-            print("Error: cannot create JSON from post")
-        }
-        
+        })
+        task.resume()
     }
+
 
 }
 

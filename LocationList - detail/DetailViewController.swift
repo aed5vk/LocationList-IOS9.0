@@ -169,17 +169,27 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
         let location_lat2 = detailItem?.valueForKey("latitude") as? CLLocationDegrees
         let location_lon2 = detailItem?.valueForKey("longitude") as? CLLocationDegrees
         
+        let detail = self.detailItem
+        let taskTitle = detail!.valueForKey("title") as? String
+        
+        let distance = self.location!.distanceFromLocation(personLocation!)
+        let taskSub = String(distance) + " meters"
+            
+        
         let postsEndpoint: String = "https://stark-ocean-4729.herokuapp.com/annotations/"
         guard let postsURL = NSURL(string: postsEndpoint) else {
             print("Error: cannot create URL")
             return
         }
+        
         let postsUrlRequest = NSMutableURLRequest(URL: postsURL)
         postsUrlRequest.HTTPMethod = "POST"
+        postsUrlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let newPost: NSDictionary = ["title": taskTitle!, "subtitle": taskSub, "latitude": location_lat2!, "longitude": location_lon2!]
         
-        let newPost: NSDictionary = ["title": "Frist Psot", "subtitle": "I iz fisrt", "latitude": location_lat2!, "longitude": location_lon2!]
+        
         do {
-            let jsonPost = try NSJSONSerialization.dataWithJSONObject(newPost, options: [])
+           let jsonPost = try NSJSONSerialization.dataWithJSONObject(newPost, options: [])
             postsUrlRequest.HTTPBody = jsonPost
             
             let config = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -196,26 +206,6 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
                     print(error)
                     return
                 }
-                
-                // parse the result as JSON, since that's what the API provides
-                let post: NSDictionary
-                do {
-                    post = try NSJSONSerialization.JSONObjectWithData(responseData,
-                        options: []) as! NSDictionary
-                } catch  {
-                    print("error parsing response from POST on /posts")
-                    return
-                }
-                // now we have the post, let's just print it to prove we can access it
-                print("The post is: " + post.description)
-                
-                // the post object is a dictionary
-                // so we just access the title using the "title" key
-                // so check for a title and print it if we have one
-                if let postID = post["id"] as? Int
-                {
-                    print("The ID is: \(postID)")
-                }
             })
             
             task.resume()
@@ -224,12 +214,24 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
         }
         
     }
-
     
-    
-    postButton.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
-    func pressed(sender: UIButton!) {
-        post()
+    func delete(){
+        let firstPostEndpoint: String = "https://stark-ocean-4729.herokuapp.com/annotations/1"
+        let firstPostUrlRequest = NSMutableURLRequest(URL: NSURL(string: firstPostEndpoint)!)
+        firstPostUrlRequest.HTTPMethod = "DELETE"
+        firstPostUrlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: config)
+        
+        let task = session.dataTaskWithRequest(firstPostUrlRequest, completionHandler: {
+            (data, response, error) in
+            guard let _ = data else {
+                print("error calling DELETE on /posts/1")
+                return
+            }
+        })
+        task.resume()
     }
 
 }
